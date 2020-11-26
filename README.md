@@ -3,9 +3,11 @@
 
 ## 基础组件
 
-1. [x] 基础 WEB 框架: ![gin](https://github.com/gin-gonic/gin)
-2. [ ] 日志服务组件
-3. [ ] 环境配置组件
+1. [x] 基础 WEB 框架: [gin](https://github.com/gin-gonic/gin)
+2. [x] 日志服务组件: 
+   1. [x] [zap](https://github.com/uber-go/zap)
+   2. [x] [lumberjack](https://github.com/natefinch/lumberjack)
+3. [x] 环境配置组件: [godotenv](https://github.com/joho/godotenv)
 4. [ ] 数据驱动组件
    1. [ ] MySQL
    2. [ ] PostgreSQL
@@ -49,3 +51,8 @@
    1. [ ] 腾讯OSS
    2. [ ] 阿里OSS
    3. [ ] 七牛OSS
+
+## 参考资料
+1. [https://github.com/yinggaozhen/awesome-go-cn](https://github.com/yinggaozhen/awesome-go-cn)
+2. [https://github.com/chenhg5/morningo](https://github.com/chenhg5/morningo)
+3. [golang zap 日志使用](https://segmentfault.com/a/1190000023321533)

@@ -14,10 +14,15 @@ import (
 	"github.com/huprince/quick-gin/config"
 )
 
-// server run
+// Run 自定义 server 服务启动方法
 func Run(router *gin.Engine) {
+	readTime := config.GetEnv().ServerConfig.ReadTimeout
+	writeTime := config.GetEnv().ServerConfig.WriteTimeout
 	server := &http.Server{
 		Addr: ":" + config.GetEnv().ServerConfig.ServerPort,
+		ReadTimeout: time.Duration(readTime) * time.Second,
+		WriteTimeout: time.Duration(writeTime) * time.Second,
+		MaxHeaderBytes: config.GetEnv().ServerConfig.MaxHeaderBytes,
 		Handler: router,
 	}
 
