@@ -10,8 +10,15 @@ import (
 
 type Env struct {
 	Debug bool
+	//ServerPort int64
+	ServerConfig 
+}
 
-	ServerPort int64
+type ServerConfig struct {
+	ServerPort string
+	ReadTimeout int64
+	WriteTimeout int64
+	MaxHeaderBytes int64
 }
 
 func GetEnv() *Env {
@@ -21,7 +28,12 @@ func GetEnv() *Env {
 	}
 	return &Env{
 		Debug: parseBool(os.Getenv("DEBUG")),
-		ServerPort: parseInt(os.Getenv("SERVER_PORT")),
+		ServerConfig: ServerConfig{
+			ServerPort: os.Getenv("SERVER_PORT"),
+			ReadTimeout: parseInt64(os.Getenv("READ_TIMEOUT"), 10),
+			WriteTimeout: parseInt64(os.Getenv("WRITE_TIMEOUT"), 10),
+			MaxHeaderBytes: parseInt64(os.Getenv("MAX_HEADER_BYTES"), 1 << 20),
+		},
 	}
 }
 
@@ -33,10 +45,10 @@ func parseBool(key string) bool {
 	return boolValue
 } 
 
-func parseInt(key string) int64 {
+func parseInt64(key string, defaultValue int64) int64 {
 	intValue, err := strconv.ParseInt(key, 10, 64)
 	if err != nil {
-		return 8080
+		return defaultValue
 	}
 	return intValue
 }

@@ -8,7 +8,6 @@ import (
 	"net/http"
 	"os"
 	"os/signal"
-	"strconv"
 	"time"
 
 	"github.com/gin-gonic/gin"
@@ -18,7 +17,7 @@ import (
 // server run
 func Run(router *gin.Engine) {
 	server := &http.Server{
-		Addr: ":" + strconv.FormatInt(config.GetEnv().ServerPort, 10),
+		Addr: ":" + config.GetEnv().ServerConfig.ServerPort,
 		Handler: router,
 	}
 
@@ -36,7 +35,7 @@ func Run(router *gin.Engine) {
 	ctx, cancel := context.WithTimeout(context.Background(), 10*time.Second)
 	defer cancel()
 	if err := server.Shutdown(ctx); err != nil {
-		log.Fatalf("Server shutdown: %s \n")
+		log.Fatalf("Server shutdown: %s \n", err)
 	}
 	pid := fmt.Sprintf("%d", os.Getpid())
 	_, openErr := os.OpenFile("pid", os.O_RDWR | os.O_CREATE | os.O_APPEND, 0666)
