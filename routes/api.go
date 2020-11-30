@@ -9,6 +9,7 @@ func Api(router *gin.Engine) {
 	apiGroup := router.Group("api")
 	{
 		apiGroup.GET("/test", controllers.ApiIndex)
+		apiGroup.POST("/users", controllers.Register)
 	}
 
 	api := router.Group("/api")

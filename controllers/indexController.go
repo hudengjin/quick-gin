@@ -17,3 +17,4 @@ func ApiIndex(c *gin.Context) {
 		"msg": "Hello Quick gin!",
 	})
 }
+

@@ -19,7 +19,8 @@ type Env struct {
 	LogIsCompress bool
 	//ServerPort int64
 
-	ServerConfig 
+	ServerConfig
+	DbConfig 
 }
 
 // ServerConfig 服务器配置 
@@ -28,6 +29,22 @@ type ServerConfig struct {
 	ReadTimeout int64
 	WriteTimeout int64
 	MaxHeaderBytes int
+}
+
+// DbConfig 数据库相关配置
+type DbConfig struct {
+	AutoMigrate bool
+	DbType string
+	DbHost string
+	DbPort int
+	DbName string
+	DbUser string
+	DbPassword string
+
+	DbMaxIdleConns int
+	DbMaxOpenConns int
+	// unit: minute
+	DbConnMaxLifetime int 
 }
 
 // GetEnv 获取环境配置
@@ -49,6 +66,18 @@ func GetEnv() *Env {
 			ReadTimeout: parseInt64(os.Getenv("READ_TIMEOUT"), 10),
 			WriteTimeout: parseInt64(os.Getenv("WRITE_TIMEOUT"), 10),
 			MaxHeaderBytes: parseInt(os.Getenv("MAX_HEADER_BYTES"), 1 << 20),
+		},
+		DbConfig: DbConfig{
+			AutoMigrate: parseBool(os.Getenv("DB_AUTO_MIGRATE"), true),
+			DbType: os.Getenv("DB_TYPE"),
+			DbHost: os.Getenv("DB_HOST"),
+			DbPort: parseInt(os.Getenv("DB_PORT"), 3306),
+			DbName: os.Getenv("DB_NAME"),
+			DbUser: os.Getenv("DB_USERNAME"),
+			DbPassword: os.Getenv("DB_PASSWORD"),
+			DbMaxIdleConns: parseInt(os.Getenv("DB_MAX_IDLE_CONNS"), 10),
+			DbMaxOpenConns: parseInt(os.Getenv("DB_MAX_OPEN_CONNS"), 100),
+			DbConnMaxLifetime: parseInt(os.Getenv("DB_CONN_MAX_LIFETIMe"), 60),
 		},
 	}
 }

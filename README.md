@@ -1,7 +1,7 @@
 # quick-gin
 基于gin 框架的 Go 语言 RESTFul API 开发脚手架 
 
-## 基础组件
+## 基础组件集成
 
 1. [x] 基础 WEB 框架: [gin](https://github.com/gin-gonic/gin)
 2. [x] 日志服务组件: 
@@ -9,13 +9,13 @@
    2. [x] [lumberjack](https://github.com/natefinch/lumberjack)
 3. [x] 环境配置组件: [godotenv](https://github.com/joho/godotenv)
 4. [ ] 数据驱动组件
-   1. [ ] MySQL
+   1. [x] MySQL
    2. [ ] PostgreSQL
    3. [ ] Oracle
    4. [ ] MSSQL
    5. [ ] MongoDB
    6. [ ] ES
-5. [ ] ORM 组件、数据库迁移
+5. [x] ORM 组件、数据库迁移
 6. [ ] 文件系统服务组件
 7. [ ] Auth 认证组件
    1. [ ] session / cookie
@@ -26,7 +26,7 @@
    3. [ ] Memcached
 9.  [ ] 前端模板引擎组件
 
-## 自开发服务
+## 自开发服务模块
 1. [ ] 后台审计模块
 2. [ ] 后台监控模块
 
