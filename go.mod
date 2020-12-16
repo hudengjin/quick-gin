@@ -16,7 +16,7 @@ require (
 	github.com/natefinch/lumberjack v2.0.0+incompatible
 	github.com/ugorji/go v1.2.0 // indirect
 	go.uber.org/zap v1.16.0
-	golang.org/x/crypto v0.0.0-20201124201722-c8d3bf9c5392 // indirect
+	golang.org/x/crypto v0.0.0-20201124201722-c8d3bf9c5392
 	golang.org/x/sys v0.0.0-20201119102817-f84b799fce68 // indirect
 	golang.org/x/text v0.3.4 // indirect
 	golang.org/x/xerrors v0.0.0-20200804184101-5ec99f83aff1 // indirect
