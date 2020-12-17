@@ -7,8 +7,8 @@ import (
 	"github.com/huprince/quick-gin/modules/log"
 )
 
-// ApiIndex index 路由控制器
-func ApiIndex(c *gin.Context) {
+// APIIndex index 路由控制器
+func APIIndex(c *gin.Context) {
 	log.Logger.Info("Quick gin log info")
 	log.Logger.Warn("Quick gin log warn")
 	log.Logger.Error("Quick gin log error")

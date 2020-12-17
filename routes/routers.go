@@ -39,7 +39,7 @@ func InitRouter() *gin.Engine{
 	})
 
 	// 自定义路由
-	Api(router)
+	API(router)
 
 	return router
 }
