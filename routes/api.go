@@ -3,7 +3,9 @@ package routes
 import (
 	"github.com/gin-gonic/gin"
 	"github.com/huprince/quick-gin/controllers"
+	"github.com/huprince/quick-gin/middlewares"
 )
+
 // API 定义 api 路由注册
 func API(router *gin.Engine) {
 	apiGroup := router.Group("api")
@@ -14,6 +16,7 @@ func API(router *gin.Engine) {
 	}
 
 	api := router.Group("/api")
+	api.Use(middlewares.BasicAuth())
 	api.GET("/index", controllers.APIIndex)
 
 	// 中间件

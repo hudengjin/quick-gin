@@ -7,6 +7,7 @@ import (
 	"github.com/gin-gonic/gin"
 	"github.com/huprince/quick-gin/connections"
 	"github.com/huprince/quick-gin/models"
+	"github.com/huprince/quick-gin/modules/auth"
 	logger "github.com/huprince/quick-gin/modules/log"
 	"github.com/huprince/quick-gin/services"
 	"gorm.io/gorm"
@@ -38,6 +39,8 @@ func Register(c *gin.Context) {
 	
 	c.JSON(http.StatusCreated, gin.H{
 		"code": 201,
+		"auth_type": "basic",
+		"token": auth.GenerateBasicToken(email, password),
 		"msg": "created successful!",
 	})
 
@@ -79,7 +82,8 @@ func Login(c *gin.Context) {
 	c.JSON(http.StatusOK, gin.H{
 		"code": 200,
 		"msg": "Login successful!",
-		"data": user.Name,
+		"auth_type": "basic",
+		"token": auth.GenerateBasicToken(email, password),
 	})
 
 }
