@@ -7,6 +7,7 @@ import (
 
 	"github.com/huprince/quick-gin/connections"
 	"github.com/huprince/quick-gin/models"
+	"github.com/huprince/quick-gin/modules/log"
 	"github.com/huprince/quick-gin/services"
 )
 
@@ -24,15 +25,16 @@ func GetBasicAuthInfo(basicToken string) (username, password string, err error) 
 	}
 	strValue := string(value)
 	if idx := strings.Index(strValue, ":"); idx > 0 {
-		return strValue[:idx], strValue[idx:], nil
+		return strValue[:idx], strValue[idx + 1:], nil
 	}
 	return "", "", nil
 }
 
 func CheckBaiscAuth(token string) (bool, error) {
-	if username, password, err := GetBasicAuthInfo(token); err != nil {
+	if username, password, err := GetBasicAuthInfo(token); err == nil {
 		db, err := connections.InitDB()
 		if err != nil {
+			log.InitLogger().Error(err.Error())
 			return false, err
 		}
 		user := &models.User{}

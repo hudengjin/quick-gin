@@ -12,8 +12,8 @@ import (
 func BasicAuth() gin.HandlerFunc {
 	return func (c *gin.Context)  {
 		if header := c.Request.Header.Get("Authorization"); header != "" {
-			if idx := strings.Index(header, " "); strings.ToLower(header[:idx]) == "header" {
-				if ok, err := auth.CheckBaiscAuth(header[idx:]); ok {
+			if idx := strings.Index(header, " "); strings.ToLower(header[:idx]) == "basic" {
+				if ok, err := auth.CheckBaiscAuth(strings.Trim(header[idx:], " ")); ok {
 					c.Next()
 				} else {
 					log.InitLogger().Error(err.Error())
